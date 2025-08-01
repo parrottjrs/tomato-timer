@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from 'react'
-import { playSound } from '../utils/playSound'
+import { playSound, unlockAudio } from '../utils/playSound'
 import { ACTIONS, INITIAL_STATE, pomReducer } from '../utils/reducer'
 import TimerOn from './TimerOn'
 import { Modal } from './Modal'
@@ -12,7 +12,7 @@ const Pomodoro = () => {
 
   useEffect(() => {
     if (!enabled) {
-      state.seconds = 0
+      dispatch({ type: ACTIONS.STOP_TIMER })
       return
     }
     if (state.reps === 0) {
@@ -35,28 +35,32 @@ const Pomodoro = () => {
       ) {
         playSound()
 
-        switch (state.breakTime) {
-          case state.breakTime:
-            dispatch({
-              type: ACTIONS.WORK_TIME,
-              payload: state.pomType === '20/5' ? 20 : 40,
-            })
-            break
-          case !state.breakTime:
-            dispatch({
-              type: ACTIONS.BREAK_TIME,
-              payload: state.pomType === '20/5' ? 5 : 10,
-            })
-            break
-          default:
-            throw new Error('invalid breakTime')
+        if (state.breakTime) {
+          dispatch({
+            type: ACTIONS.WORK_TIME,
+            payload: state.pomType === '20/5' ? 1 : 40,
+          })
+        } else {
+          dispatch({
+            type: ACTIONS.BREAK_TIME,
+            payload: state.pomType === '20/5' ? 1 : 10,
+          })
         }
       }
-      return () => clearTimeout(timer)
     }, 1000)
-  }, [state.seconds, state.minutes])
+    return () => clearTimeout(timer)
+  }, [
+    enabled,
+    state.seconds,
+    state.minutes,
+    state.reps,
+    state.breakTime,
+    state.pomType,
+    dispatch,
+  ])
 
   const startTimer = (pomType: string, workTime: number) => {
+    unlockAudio()
     setEnabled(true)
     setShowModal(false)
     dispatch({

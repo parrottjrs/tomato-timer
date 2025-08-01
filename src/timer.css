@@ -1,0 +1,71 @@
+/* TIMER_ON_STYLE */
+.timer-on {
+  padding: 0.125rem; /* p-0.5 = 2px */
+  /* md:p-0 means padding 0 on medium screens and above, so we add a media query */
+  color: #22c55e; /* text-green-500 */
+  transition: color 0.2s ease;
+}
+@media (min-width: 768px) {
+  .timer-on {
+    padding: 0; /* md:p-0 */
+  }
+}
+.timer-on:hover {
+  color: #86efac; /* hover:text-green-300 */
+}
+
+/* TIMER_OFF_STYLE */
+.timer-off {
+  padding: 0.125rem; /* p-0.5 */
+  margin-right: 0.5rem; /* mr-2 */
+  color: #ef4444; /* text-red-500 */
+  transition: color 0.2s ease;
+}
+@media (min-width: 768px) {
+  .timer-off {
+    padding: 0; /* md:p-0 */
+  }
+}
+.timer-off:hover {
+  color: #fca5a5; /* hover:text-red-300 */
+}
+
+/* modalButton */
+.modal-button {
+  margin-left: 0.75rem; /* mx-3 = 0.75rem on left and right */
+  margin-right: 0.75rem;
+  margin-top: 0.25rem; /* my-1 = 0.25rem top and bottom */
+  margin-bottom: 0.25rem;
+  transition: color 0.2s ease;
+}
+.modal-button:hover {
+  color: #22d3ee; /* hover:text-cyan-300 */
+}
+
+/* buttonDiv */
+.button-div {
+  height: 1px; /* h-px */
+  background-color: #111827; /* bg-gray-900 */
+  margin-top: 0.25rem; /* my-1 */
+  margin-bottom: 0.25rem;
+  margin-left: 0.5rem; /* mx-2 */
+  margin-right: 0.5rem;
+  opacity: 0.5;
+}
+
+/* modalContainer */
+.modal-container {
+  position: absolute;
+  right: -1.75rem; /* -right-7 = -28px (-7 * 4px base) */
+  z-index: 20;
+  width: 5rem; /* w-20 = 80px */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem;
+  padding-left: 0.25rem; /* px-1 */
+  padding-right: 0.25rem;
+  color: #cbd5e1; /* text-slate-300 */
+  font-weight: 300; /* font-thin */
+  letter-spacing: 0.05em; /* tracking-wider */
+  border-radius: 0.75rem; /* rounded-xl */
+  background-color: rgba(14, 165, 233, 0.75); /* bg-sky-700/75 */
+}
